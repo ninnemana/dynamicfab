@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Dynamic Fabrication and Finishing">
+	<meta name="description" content="Dynamic Fabrication and Finishing">
+	<title>Dynamic Fabrication &amp; Finishing</title>
+	<link rel="shortcut icon" href="/imgs/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="/css/main.css">
+	<script type="text/javascript" src="/js/vendor/html5shiv/dist/html5shiv-printshiv.min.js"></script>
+</head>
+<body>
+
+	<!-- Content Wrapper -->
+	<div class="wrap">
+		<!-- Header -->
+		<header class="clearfix">
+			<nav class="navbar navbar-default navbar-inverse" role="navigation">
+				<div class="container row">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dyn-navbar-collapse">
+							<span class="sr-only">Toggle Navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="/" class="navbar-brand">
+							<img src="/imgs/logo.png" alt="Dynamic Fabrication and Finishing">
+						</a>
+					</div>
+					<div class="collapse navbar-collapse pull-right" id="ct-navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li ng-class="{ active: isActive('/home')}"><a href="/">About Us</a></li>
+							<li ng-class="{ active: isActive('/capabilities_equipment')}"><a href="/capabilities_equipment">Capabilities &amp; Equipment</a></li>
+							<li ng-class="{ active: isActive('/quote')}"><a href="/quote">Request a Quote</a></li>
+							<li ng-class="{ active: isActive('/testimonials')}"><a href="/testimonials">Past Jobs &amp; Testimonials</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Content -->
+		<div class="data-view" data-ng-view></div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container-fluid row">
+			<div class="col-lg-6 col-md-5 col-xs-6">
+				<address itemscope itemtype="//schema.org/Organization">
+					<img class="logo" src="/imgs/logo.png" alt="Dynamic Fabrication and Finishing, LLC" itemprop="logo">
+					<div class="body">
+						<span itemprop="name">Dynamic Fabrication and Finishing, LLC</span>
+						<div itemprop="address" itemscope itemtype="//schema.org/PostalAddress">
+							<span itemprop="streetAddress">800 Wisconsin Street</span>
+							<br>
+							<span itemprop="addressLocality">Eau Claire</span>
+							<span itemprop="addressRegion">WI</span>
+							<span itemprop="postalCode">54703</span>
+						</div>
+						Phone: <a href="tel:+17155524454" itemprop="telephone">715-552-4454</a>
+					</div>
+				</address>
+			</div>
+			<div class="col-lg-6 col-md-7 col-xs-6">
+				<ul class="nav nav-pills pull-right">
+					<li class="active"><a href="/sitemap">Site Map</a></li>
+					<li><a href="/warranty">Warranty</a></li>
+					<li><a href="/policy">Policy</a></li>
+					<li><a href="/terms">Terms and Conditions</a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="/js/vendor/holderjs/holder.js"></script>
+	<script data-main="/js/bootstrapper" src="/js/vendor/requirejs/require.js"></script>
+</body>
+</html>
