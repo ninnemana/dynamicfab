@@ -183,9 +183,15 @@ $main-nav-height: 126px;
 		border-bottom: 4px solid $heading-border;
 	}
 
+	.carousel-caption{
+		background: rgb(0,0,0);
+		background: rgba(0,0,0,0.6);
+		border-radius: 8px;
+	}
+
 	.home-banners{
 		margin:25px;
-		.row{
+		& > .row{
 			@include flexbox();
 			flex-direction: row;
 			flex-wrap: wrap;
@@ -204,9 +210,12 @@ $main-nav-height: 126px;
 				h3{
 					margin-top:0;
 					font-size:32px;
-					color: $gray;
-					// font-size:20px;
-					// font-weight:bold;
+					span,a{
+						color: $gray;
+					}
+					a{
+						text-decoration: none;
+					}
 				}
 				p.lead{
 					font-size: 16px;
@@ -313,9 +322,20 @@ footer{
 	}
 	.data-view{
 		.home-banners{
-			.row{
+			& > .row{
+				align-content:flex-start;
+				justify-content: flex-start;
+				flex-direction: column;
 				.col-lg-4{
 					border-right:none;
+					margin-bottom:10px;
+					.row{
+						border-bottom: 2px solid #aeaeae;
+						padding-bottom: 10px;
+						.col-lg-2, .col-lg-9{
+							display:inline-block;
+						}
+					}
 				}
 			}
 		}

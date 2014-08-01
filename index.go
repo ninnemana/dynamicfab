@@ -1,6 +1,8 @@
 package dynamic
 
 import (
+	"controllers/admin"
+	"controllers/auth"
 	"flag"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/gzip"
@@ -30,6 +32,13 @@ func init() {
 		HTMLContentType: "text/html",
 	}))
 
+	// Backend tasks
+	m.Group("/admin", func(r martini.Router) {
+
+		r.Get("", auth.Check, backend.Home)
+	})
+
+	// Serve Frontend
 	m.Get("/**", func(rw http.ResponseWriter, req *http.Request, r render.Render) {
 		bag := make(map[string]interface{}, 0)
 		bag["Host"] = req.URL.Host
