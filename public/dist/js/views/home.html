@@ -1,21 +1,43 @@
-<div class="container-fluid row home-header">
-	<div class="jumbotron">
-		<h1>Valued Customers</h1>
-		<p>
-			Welcome to the CURT warranty system
-			<br>
-			<a href="/surveys" class="btn btn-primary btn-lg" role="button">Learn More</a>
-		</p>
+<div class="container-fluid row home-header" ng-if="carousel.length > 0">
+	<div id="homepage-carousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#homepage-carousel" data-slide-to="i" ng-class="{ 'active' : i == 0 }" ng-repeat="(i, c) in carousel"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item" ng-class="{ 'active' : i == 0 }" ng-repeat="(i, c) in carousel">
+				<img src="[[c.img]]" alt="[[c.title]]">
+				<div class="carousel-caption">
+				[[c.caption]]
+				</div>
+			</div>
+		</div>
+
+		<!-- Controls -->
+		<a class="left carousel-control" href="#homepage-carousel" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#homepage-carousel" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
 	</div>
 </div>
 
-<div class="container-fluid">
-	<h2>Latest Surveys</h2>
-	<ul class="survey-container">
-		<li ng-repeat="survey in surveys">
-			<h3>{{ survey.name }}</h3>
-			<p>{{ survey.description | truncate: 400 }}</p>
-			<a href="/surveys/{{ survey.id }}" class="btn-flat-success">Take Survey</a>
-		</li>
-	</ul>
+<div class="container-fluid home-banners">
+	<div class="row">
+		<div class="col-lg-4" ng-repeat="col in cols">
+			<div class="row">
+				<div class="col-lg-2">
+					<img src="[[col.img]]" alt="[[col.title]]">
+				</div>
+				<div class="col-lg-7">
+					<h3>[[col.title]]</h3>
+				</div>
+				<div class="col-lg-2"></div>
+			</div>
+			<p class="lead">[[col.body]]</p>
+		</div>
+	</div>
 </div>

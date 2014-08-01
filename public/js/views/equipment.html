@@ -1,0 +1,31 @@
+<div class="container-fluid">
+	<div class="equipment-list hidden-sm hidden-xs">
+		<div class="group" ng-repeat="group in groups">
+			<h3>[[group.title]]</h3>
+			<p class="lead">[[group.description]]</p>
+			<ul class="list-group" ng-if="group.components.length > 0">
+				<li class="list-group-item" ng-repeat="component in group.components">[[component]]</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="equipment-list panel-group hidden-md hidden-lg" id="accordion">
+		<div class="panel panel-default" ng-repeat="(i,group) in groups">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse[[i]]">
+					[[group.title]]
+					</a>
+				</h4>
+			</div>
+			<div id="collapse[[i]]" class="panel-collapse collapse" ng-class="{ 'in' : i == 0 }">
+				<div class="panel-body">
+					<p class="lead">[[group.description]]</p>
+					<ul class="list-group" ng-if="group.components.length > 0">
+						<li class="list-group-item" ng-repeat="component in group.components">[[component]]</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

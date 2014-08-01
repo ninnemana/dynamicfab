@@ -5,6 +5,7 @@ require.config({
 		'angular': './vendor/angular/angular.min',
 		'angular-alert':'./vendor/angular-ui-bootstrap/src/alert/alert',
 		'ngResource': './vendor/angular-resource/angular-resource.min',
+		'ngSanitize': './vendor/angular-sanitize/angular-sanitize.min',
 		'ngRoute': './vendor/angular-route/angular-route.min',
 		'jquery': './vendor/jquery/dist/jquery.min',
 		'respondJS': './vendor/respondJS/dest/respond.min',
@@ -24,10 +25,11 @@ require.config({
 		'bootstrap':['jquery'],
 		'ngRoute':['angular'],
 		'ngResource': ['angular'],
+		'ngSanitize': ['angular'],
 		'angular-alert':['angular']
 	},
 	waitSeconds: 15,
-	urlArgs: 'bust=v0.1.1'
+	urlArgs: 'bust=v0.1.2'
 });
 
 require([

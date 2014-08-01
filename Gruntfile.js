@@ -3,6 +3,9 @@ module.exports = function(grunt){
 	var jsFilePaths = [
 		'public/js/*.js'
 	];
+	var cssFilePaths = [
+		'public/css/*.css'
+	];
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -27,6 +30,14 @@ module.exports = function(grunt){
 				files:(function(){
 					var files = [];
 					jsFilePaths.forEach(function(val){
+						files.push({
+							expand: true,
+							cwd: '<%= builtDir %>',
+							src: val,
+							dest: '<%= builtDir %>'
+						});
+					});
+					cssFilePaths.forEach(function(val){
 						files.push({
 							expand: true,
 							cwd: '<%= builtDir %>',
@@ -100,20 +111,28 @@ module.exports = function(grunt){
 		},
 		go:{
 			myapp:{
-				output:'dynamic',
-				cmd:'goapp',
-				build_flags: ['-tags','appengine'],
-				run_files: ['index.go']
+				cmd:'goapp serve',
+				bin: '/Users/ninnemana/code/go/gocode/gae',
+				run_files:[]
 			}
 		},
 		concurrent:{
 			prod:{
-				tasks:['go:run:myapp','watch:scripts','watch:compass']
+				tasks:['watch:scripts','watch:compass']
 			},
 			options:{
 				logConcurrentOutput: true
 			}
 		}
+	});
+
+	grunt.registerTask('run','Run app server',function(){
+		var spawn = require('child_process').spawn;
+		var PIPE = {stdio: 'inherit'};
+		var done = this.async();
+		spawn('goapp serve',['.'], PIPE).on('exit',function(status){
+			done(status === 0);
+		});
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-requirejs');

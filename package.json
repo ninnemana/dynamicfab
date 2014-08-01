@@ -1,7 +1,7 @@
 {
-  "name": "GoSurvey",
+  "name": "dynamic-fab",
   "version": "0.0.1",
-  "description": "NOTES =====",
+  "description": "Dynamic Fabrication and Finishing",
   "main": "",
   "dependencies": {},
   "devDependencies": {
@@ -22,7 +22,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git://github.com/curt-labs/GoSurvey",
+  "repository": "git://github.com/ninnemana/dynamicfab",
   "author": "Alex Ninneman",
   "license": "BSD",
   "readmeFilename": "README.md"

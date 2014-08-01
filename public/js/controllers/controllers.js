@@ -4,26 +4,24 @@ define([
 	'routes/routes',
 	'controllers/AppController',
 	'controllers/HomeController',
+	'controllers/AboutController',
+	'controllers/EquipmentController',
 	'controllers/WarrantyController',
-	'controllers/SurveysController',
-	'controllers/SurveyController',
 	'controllers/PolicyController',
-	'controllers/TermsController',
-	'controllers/PrizeController'],
-	function($, NProgress, routes, app, home, warranty, surveys, survey, policy, terms, prize){
+	'controllers/TermsController'],
+	function($, NProgress, routes, app, home, about, equipment, warranty, policy, terms){
 
 		var controllers = {
 			home: home,
 			warranty: warranty,
-			surveys: surveys,
-			survey: survey,
+			about: about,
+			equipment: equipment,
 			policy: policy,
-			terms: terms,
-			prize: prize
+			terms: terms
 		};
 
 		var setUpRoutes = function(angModule){
-			angModule.config(function($routeProvider, $locationProvider) {
+			angModule.config(function($routeProvider, $locationProvider, $interpolateProvider) {
 				$.each(routes, function(key, val) {
 					$routeProvider.when(val.route,{
 						template: val.template,
@@ -33,6 +31,7 @@ define([
 					$routeProvider.otherwise({ redirectTo: "/home" });
 				});
 
+				$interpolateProvider.startSymbol('[[').endSymbol(']]');
 				$locationProvider.html5Mode(true);
 				$routeProvider.otherwise({ redirectTo: routes.home.route });
 			});
