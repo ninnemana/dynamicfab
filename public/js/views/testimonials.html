@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<h1>Past Jobs &amp; Testimonials</h1>
+
+	<div class="testimonial" ng-repeat="(i,test) in testimonials">
+		<div class="job" ng-if="test.job">
+			<h3>[[test.job.title]]</h3>
+			<p class="lead">[[test.job.desc]]</p>
+		</div>
+		<div class="clearfix"></div>
+		<blockquote class="blockquote-reverse" ng-if="test.mention">
+		  <p>[[test.mention.copy]]</p>
+		  <footer>[[test.mention.name]]</footer>
+		</blockquote>
+		<hr ng-if="i+1 !== testimonials.length">
+	</div>
+</div>

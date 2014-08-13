@@ -7,16 +7,11 @@
 	<link rel="shortcut icon" href="/imgs/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	{{with not .Admin}}
 	<link rel="stylesheet" href="/css/main.css">
-	{{else}}
-	<link rel="stylesheet" href="/css/admin.css">
-	{{end}}
 	<script type="text/javascript" src="/js/vendor/html5shiv/dist/html5shiv-printshiv.min.js"></script>
 </head>
 <body>
 
-	{{with not .Admin}}
 	<!-- Content Wrapper -->
 	<div class="wrap">
 		<!-- Header -->
@@ -36,10 +31,6 @@
 					</div>
 					<div class="collapse navbar-collapse pull-right" id="dyn-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li ng-class="{ active: isActive('/about')}"><a href="/about">About Us</a></li>
-							<li ng-class="{ active: isActive('/equipment')}"><a href="/equipment">Capabilities &amp; Equipment</a></li>
-							<li ng-class="{ active: isActive('/quote')}"><a href="/quote">Request a Quote</a></li>
-							<li ng-class="{ active: isActive('/testimonials')}"><a href="/testimonials">Past Jobs &amp; Testimonials</a></li>
 						</ul>
 					</div>
 				</div>
@@ -71,66 +62,9 @@
 				</address>
 			</div>
 			<div class="col-lg-6 col-md-7 col-xs-6">
-				<ul class="nav nav-pills pull-right">
-					<li class="active"><a href="/sitemap">Site Map</a></li>
-					<!-- <li><a href="/warranty">Warranty</a></li>
-					<li><a href="/policy">Policy</a></li>
-					<li><a href="/terms">Terms and Conditions</a></li> -->
-				</ul>
-				<div class="clearfix"></div>
-				<div class="social-links pull-right">
-					<a href="#">
-						<img src="/imgs/icons/facebook.png" alt="DYNAMIC on Facebook">
-					</a>
-					<a href="#">
-						<img src="/imgs/icons/twitter.png" alt="DYNAMIC on Twitter">
-					</a>
-					<a href="#">
-						<img src="/imgs/icons/youtube.png" alt="DYNAMIC on Youtube">
-					</a>
-				</div>
-				<div class="clearfix"></div>
 			</div>
 		</div>
 	</footer>
-
-	<script type="text/javascript" src="/js/vendor/holderjs/holder.js"></script>
-	<script data-main="/js/bootstrapper" src="/js/vendor/requirejs/require.js"></script>
-	{{else}}
-	{{$activeNav := ""}}
-	{{with .ActiveNav}}
-	{{$activeNav := .ActiveNav}}
-	{{end}}
-	<div class="wrap container-fluid">
-		<!-- Header -->
-		<header class="clearfix">
-			<nav class="navbar navbar-default navbar-inverse admin-nav" role="navigation">
-				<div class="container row">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#dyn-navbar-collapse">
-							<span class="sr-only">Toggle Navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a href="/admin" class="navbar-brand">
-							Dynamic Fab &amp; Finishing Management
-						</a>
-					</div>
-					{{with not .Auth}}
-					<div class="collapse navbar-collapse pull-right" id="dyn-navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li {{if StringsEqual $activeNav ""}}class="active"{{end}}><a href="/admin">Main</a></li>
-						</ul>
-					</div>
-					{{end}}
-				</div>
-			</nav>
-		</header>
-
-		{{yield}}
-	</div>
-	{{end}}
 
 </body>
 </html>

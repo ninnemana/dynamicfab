@@ -255,7 +255,7 @@ $main-nav-height: 126px;
 	}
 }
 
-footer{
+.layout-footer{
 	padding: 20px 10px;
 	background:$navbar-inverse-bg;
 	color:#ffffff;
@@ -341,7 +341,7 @@ footer{
 		}
 	}
 
-	footer{
+	.layout-footer{
 		.row {
 			@include flexbox();
 			flex-flow: row wrap;
