@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9">
+			<h1><span>Homepage Content</span></h1>
+		</div>
+		<div class="col-lg-2 well">
+			<a href="/admin/content/0" class="btn-well btn btn-danger">Add Content</a>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<table class="table table-condensed table-bordered table-hover sortable">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Link</th>
+				<th>Date Added</th>
+				<th>Image</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{range .Content}}
+			<tr>
+				<td>{{.Title}}</td>
+				<td><a href="{{.Link}}" target="_blank">{{.Link}}</a></td>
+				<td>{{.DateAdded}}</td>
+				<td><a href="{{.Image}}" target="_blank">{{.Image}}</a></td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/admin/content/{{.ID}}">Edit</a></li>
+							<li><a href="#" class="delete" data-id="{{.ID}}">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			{{end}}
+		</tbody>
+	</table>
+</div>

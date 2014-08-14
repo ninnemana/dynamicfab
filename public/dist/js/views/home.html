@@ -8,7 +8,7 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item" ng-class="{ 'active' : i == 0 }" ng-repeat="(i, c) in carousel">
-				<img src="[[c.img]]" alt="[[c.title]]">
+				<img src="[[c.image]]" alt="[[c.title]]">
 				<div class="carousel-caption">
 				[[c.caption]]
 				</div>
@@ -30,7 +30,7 @@
 		<div class="col-lg-4" ng-repeat="col in cols">
 			<div class="row">
 				<div class="col-lg-2">
-					<img src="[[col.img]]" alt="[[col.title]]">
+					<img src="[[col.image]]" alt="[[col.title]]">
 				</div>
 				<div class="col-lg-9">
 					<h3>

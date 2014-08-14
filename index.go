@@ -2,7 +2,11 @@ package dynamic
 
 import (
 	"controllers/admin"
+	bannerAdmin "controllers/admin/banners"
+	contentAdmin "controllers/admin/content"
 	"controllers/auth"
+	"controllers/banners"
+	"controllers/content"
 	"flag"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/gzip"
@@ -47,9 +51,33 @@ func init() {
 
 	// Backend tasks
 	m.Group("/admin", func(r martini.Router) {
-		r.Get("", auth.Check, backend.Home)
+		r.Get("", backend.Home)
 		r.Get("/auth", auth.Index)
 		r.Post("/auth", auth.Login)
+		r.Get("/auth/out", auth.Logout)
+	})
+
+	m.Group("/admin/banners", func(r martini.Router) {
+		r.Get("", bannerAdmin.Index)
+		r.Get("/:id", bannerAdmin.Edit)
+		r.Post("/:id", bannerAdmin.Save)
+		r.Delete("/:id", bannerAdmin.Delete)
+	})
+	m.Group("/admin/content", func(r martini.Router) {
+		r.Get("", contentAdmin.Index)
+		r.Get("/:id", contentAdmin.Edit)
+		r.Post("/:id", contentAdmin.Save)
+		r.Delete("/:id", contentAdmin.Delete)
+	})
+
+	m.Get("/blob/:id", banners.Serve)
+	m.Group("/api/banners", func(r martini.Router) {
+		r.Get("", banners.All)
+		r.Get("/:id", banners.Get)
+	})
+	m.Group("/api/content", func(r martini.Router) {
+		r.Get("", content.All)
+		r.Get("/:id", content.Get)
 	})
 
 	// Serve Frontend

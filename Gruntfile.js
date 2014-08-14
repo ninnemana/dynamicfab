@@ -56,7 +56,8 @@ module.exports = function(grunt){
 			},
 			all:[
 				'Gruntfile.js',
-				'<%= appDir %>/js/{,*/}*.js'
+				'<%= appDir %>/js/{,*/}*.js',
+				'!<%= appDir %>/js/vendor/*'
 			]
 		},
 		compass:{

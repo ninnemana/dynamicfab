@@ -5,7 +5,6 @@ import (
 	"appengine/datastore"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -21,7 +20,6 @@ func Check(w http.ResponseWriter, r *http.Request, sess sessions.Session) {
 		http.Redirect(w, r, "/admin/auth", http.StatusFound)
 		return
 	}
-	log.Println(auth)
 }
 
 func Index(rw http.ResponseWriter, req *http.Request, r render.Render) {
@@ -70,5 +68,11 @@ func Login(rw http.ResponseWriter, req *http.Request, sess sessions.Session) {
 	sess.Set("auth", key.Encode())
 
 	http.Redirect(rw, req, "/admin", http.StatusFound)
+	return
+}
+
+func Logout(rw http.ResponseWriter, req *http.Request, sess sessions.Session) {
+	sess.Delete("auth")
+	http.Redirect(rw, req, "/admin/auth", http.StatusFound)
 	return
 }
