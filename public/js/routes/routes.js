@@ -3,8 +3,9 @@ define([
 	'/js/vendor/requirejs-text/text.js!/js/views/about.html',
 	'/js/vendor/requirejs-text/text.js!/js/views/equipment.html',
 	'/js/vendor/requirejs-text/text.js!/js/views/quote.html',
-	'/js/vendor/requirejs-text/text.js!/js/views/testimonials.html'
-],function(homeTemplate, aboutTemplate, equipmentTemplate, quoteTemplate, testimonialsTemplate){
+	'/js/vendor/requirejs-text/text.js!/js/views/testimonials.html',
+	'/js/vendor/requirejs-text/text.js!/js/views/sitemap.html'
+],function(homeTemplate, aboutTemplate, equipmentTemplate, quoteTemplate, testimonialsTemplate,sitemapTemplate){
 	return {
 		home: {
 			title: 'Home',
@@ -35,6 +36,12 @@ define([
 			route: '/testimonials',
 			controller: 'testimonials',
 			template: testimonialsTemplate
+		},
+		sitemap: {
+			title: 'Sitemap',
+			route: '/sitemap',
+			controller: 'sitemap',
+			template: sitemapTemplate
 		}
 	};
 });

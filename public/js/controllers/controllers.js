@@ -10,8 +10,9 @@ define([
 	'controllers/PolicyController',
 	'controllers/TermsController',
 	'controllers/QuoteController',
-	'controllers/TestimonialsController'],
-	function($, NProgress, routes, app, home, about, equipment, warranty, policy, terms, quote, testimonials){
+	'controllers/TestimonialsController',
+	'controllers/SitemapController'],
+	function($, NProgress, routes, app, home, about, equipment, warranty, policy, terms, quote, testimonials, sitemap){
 
 		var controllers = {
 			home: home,
@@ -21,7 +22,8 @@ define([
 			policy: policy,
 			terms: terms,
 			quote: quote,
-			testimonials: testimonials
+			testimonials: testimonials,
+			sitemap: sitemap
 		};
 
 		var setUpRoutes = function(angModule){
