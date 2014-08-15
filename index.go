@@ -4,10 +4,13 @@ import (
 	"controllers/admin"
 	bannerAdmin "controllers/admin/banners"
 	contentAdmin "controllers/admin/content"
+	quoteAdmin "controllers/admin/quote"
 	"controllers/auth"
 	"controllers/banners"
 	"controllers/content"
+	"controllers/quote"
 	"flag"
+	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/gzip"
 	"github.com/martini-contrib/render"
@@ -41,6 +44,12 @@ func init() {
 					}
 					return false
 				},
+				"ShortenString": func(s string, l int) string {
+					if len(s) <= l {
+						return s
+					}
+					return fmt.Sprintf("%s...", s[:l])
+				},
 			},
 		},
 		Delims:          render.Delims{"{{", "}}"},
@@ -58,16 +67,22 @@ func init() {
 	})
 
 	m.Group("/admin/banners", func(r martini.Router) {
-		r.Get("", bannerAdmin.Index)
-		r.Get("/:id", bannerAdmin.Edit)
-		r.Post("/:id", bannerAdmin.Save)
-		r.Delete("/:id", bannerAdmin.Delete)
+		r.Get("", auth.Check, bannerAdmin.Index)
+		r.Get("/:id", auth.Check, bannerAdmin.Edit)
+		r.Post("/:id", auth.Check, bannerAdmin.Save)
+		r.Delete("/:id", auth.Check, bannerAdmin.Delete)
 	})
 	m.Group("/admin/content", func(r martini.Router) {
-		r.Get("", contentAdmin.Index)
-		r.Get("/:id", contentAdmin.Edit)
-		r.Post("/:id", contentAdmin.Save)
-		r.Delete("/:id", contentAdmin.Delete)
+		r.Get("", auth.Check, contentAdmin.Index)
+		r.Get("/:id", auth.Check, contentAdmin.Edit)
+		r.Post("/:id", auth.Check, contentAdmin.Save)
+		r.Delete("/:id", auth.Check, contentAdmin.Delete)
+	})
+	m.Group("/admin/quotes", func(r martini.Router) {
+		r.Get("", auth.Check, quoteAdmin.Index)
+		r.Post("/heading", auth.Check, quoteAdmin.SetHeading)
+		r.Get("/:id", auth.Check, quoteAdmin.View)
+		r.Delete("/:id", auth.Check, quoteAdmin.Delete)
 	})
 
 	m.Get("/blob/:id", banners.Serve)
@@ -79,6 +94,13 @@ func init() {
 		r.Get("", content.All)
 		r.Get("/:id", content.Get)
 	})
+
+	m.Group("/api/quote", func(r martini.Router) {
+		r.Post("", quote.Submit)
+		r.Get("/heading", quote.Heading)
+	})
+
+	m.Get("/adduser", auth.AddUser)
 
 	// Serve Frontend
 	m.Get("/**", func(rw http.ResponseWriter, req *http.Request, r render.Render) {

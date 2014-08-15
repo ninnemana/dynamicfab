@@ -44,8 +44,7 @@ func (b *Banner) Save(ctx appengine.Context) error {
 }
 
 func (b *Banner) Delete(ctx appengine.Context) error {
-	err := datastore.Delete(ctx, b.key(ctx))
-	return err
+	return datastore.Delete(ctx, b.key(ctx))
 }
 
 func NewKey(ctx appengine.Context, str_id string, int_id int64) *datastore.Key {

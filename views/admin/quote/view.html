@@ -1,0 +1,31 @@
+{{$q := .Quote}}
+
+<div class="container">
+	<h1><span>View Quote from {{$q.Name}}</span></h1>
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="control-label col-lg-2">Name</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" value="{{$q.Name}}" readonly>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-lg-2">Email</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" value="{{$q.Email}}" readonly>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-lg-2">Phone Number</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" value="{{$q.Phone}}" readonly>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-lg-2">Description</label>
+			<div class="col-lg-6">
+				<textarea class="form-control" readonly cols="30" rows="10">{{$q.Description}}</textarea>
+			</div>
+		</div>
+	</form>
+</div>

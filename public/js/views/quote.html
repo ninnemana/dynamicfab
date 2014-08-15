@@ -3,11 +3,18 @@
 
 	<p class="lead">[[heading]]</p>
 
-	<form class="quote-form form-horizontal" ng-submit="requestQuote($evt)" role="form">
+	<div ng-if="formSuccess" class="row">
+		<div class="col-lg-6 col-lg-offset-1 alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<strong>Success!</strong> Thank you for submitting your request, we will be in touch.
+		</div>
+	</div>
+
+	<form class="quote-form form-horizontal" role="form">
 		<div class="form-group" ng-class="{ 'has-error' : nameError }">
 			<label for="name" class="control-label col-lg-2">Name</label>
 			<div class="col-lg-4">
-				<input type="text" class="form-control" id="name" placeholder="Enter your name" ng-model="quote.name">
+				<input type="text" class="form-control" id="name" placeholder="Enter your name" ng-model="quote.name" value="quote.name">
 			</div>
 			<div class="col-lg-6">
 				<span class="help-block" ng-if="nameError">[[nameError]]</span>
@@ -16,7 +23,7 @@
 		<div class="form-group" ng-class="{ 'has-error' : emailError }">
 			<label for="email" class="control-label col-lg-2">Email Address</label>
 			<div class=" col-lg-4">
-				<input type="text" class="form-control" id="email" placeholder="Enter your email" ng-model="quote.email">
+				<input type="text" class="form-control" id="email" placeholder="Enter your email" ng-model="quote.email" value="[[quote.email]]">
 			</div>
 			<div class="col-lg-6">
 				<span class="help-block" ng-if="emailError">[[emailError]]</span>
@@ -25,7 +32,7 @@
 		<div class="form-group" ng-class="{ 'has-error' : phoneError }">
 			<label for="phone" class="control-label col-lg-2">Phone Number</label>
 			<div class="col-lg-4">
-				<input type="text" class="form-control" id="phone" placeholder="Enter your phone number" ng-model="quote.phone">
+				<input type="text" class="form-control" id="phone" placeholder="Enter your phone number" ng-model="quote.phone" value="quote.phone">
 			</div>
 			<div class="col-lg-6">
 				<span class="help-block" ng-if="phoneError">[[phoneError]]</span>
@@ -34,7 +41,7 @@
 		<div class="form-group" ng-class="{ 'has-error' : descError }">
 			<label for="desc" class="control-label col-lg-2">Description</label>
 			<div class="col-lg-6">
-				<textarea name="desc" id="desc" cols="30" rows="10" class="form-control" placeholder="Describe the project.." ng-model="quote.desc"></textarea>
+				<textarea name="desc" id="desc" cols="30" rows="10" class="form-control" placeholder="Describe the project.." ng-model="quote.desc">[[quote.desc]]</textarea>
 			</div>
 			<div class="col-lg-4">
 				<span class="help-block" ng-if="descError">[[descError]]</span>
@@ -44,7 +51,7 @@
 			<div class="col-lg-6 col-lg-offset-2 well well-lg">
 				<div class="row">
 					<div class="col-lg-4">
-						<button class="btn btn-primary" type="submit">Request Quote</button>
+						<button class="btn btn-primary" type="submit" ng-click="requestQuote()">Request Quote</button>
 					</div>
 					<div class="col-lg-6">
 						<span class="help-block" ng-if="formError">[[formError]]</span>

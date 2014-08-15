@@ -71,6 +71,22 @@ func Login(rw http.ResponseWriter, req *http.Request, sess sessions.Session) {
 	return
 }
 
+func AddUser(rw http.ResponseWriter, req *http.Request) {
+	ctx := appengine.NewContext(req)
+	u := User{
+		Username: "",
+		Password: "",
+	}
+
+	if u.Username == "" {
+		return
+	}
+
+	p := datastore.NewKey(ctx, "User", "default", 0, nil)
+	datastore.Put(ctx, datastore.NewIncompleteKey(ctx, "User", p), &u)
+	return
+}
+
 func Logout(rw http.ResponseWriter, req *http.Request, sess sessions.Session) {
 	sess.Delete("auth")
 	http.Redirect(rw, req, "/admin/auth", http.StatusFound)

@@ -1,0 +1,50 @@
+<div class="container">
+	<h1><span>Requested Quotes</span></h1>
+
+	<div class="well well-lg">
+		<form class="heading-form" role="form">
+			<div class="form-group">
+				<label for="heading" class="col-lg-2 control-label">Heading</label>
+				<textarea data-id="{{.Heading.ID}}" name="heading" id="heading" cols="30" rows="5" class="form-control">{{.Heading.Heading}}</textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-danger" type="submit">Save Heading</button>
+			</div>
+		</form>
+	</div>
+
+	<table class="table table-condensed table-bordered table-hover sortable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th>Requested</th>
+				<th>Description</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{range .Quotes}}
+			<tr>
+				<td>{{.Name}}</td>
+				<td>{{.Email}}</td>
+				<td>{{.Phone}}</td>
+				<td>{{.Created}}</td>
+				<td>{{ShortenString .Description 100}}</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/admin/quotes/{{.ID}}">View</a></li>
+							<li><a href="#" class="delete" data-id="{{.ID}}">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			{{end}}
+		</tbody>
+	</table>
+</div>

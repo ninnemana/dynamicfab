@@ -12,6 +12,7 @@ require.config({
 		'alertify':'../vendor/alertify.js/lib/alertify.min',
 		'banner':'./banner',
 		'content':'./content',
+		'quote':'./quote',
 		'templates':'../views'
 	},
 
@@ -47,6 +48,9 @@ require([
 					break;
 				case 'content':
 					require(['content']);
+					break;
+				case 'quotes':
+					require(['quote']);
 					break;
 				default:
 					break;

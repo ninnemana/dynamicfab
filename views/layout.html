@@ -97,10 +97,7 @@
 	<script type="text/javascript" src="/js/vendor/holderjs/holder.js"></script>
 	<script data-main="/js/bootstrapper" src="/js/vendor/requirejs/require.js"></script>
 	{{else}}
-	{{$activeNav := ""}}
-	{{with .ActiveNav}}
 	{{$activeNav := .ActiveNav}}
-	{{end}}
 	<div class="wrap container-fluid">
 		<!-- Header -->
 		<header class="clearfix">
@@ -123,6 +120,8 @@
 							<li {{if StringsEqual $activeNav ""}}class="active"{{end}}><a href="/admin">Main</a></li>
 							<li {{if StringsEqual $activeNav "banners"}}class="active"{{end}}><a href="/admin/banners">Banners</a></li>
 							<li {{if StringsEqual $activeNav "content"}}class="active"{{end}}><a href="/admin/content">Content</a></li>
+							<li {{if StringsEqual $activeNav "quotes"}}class="active"{{end}}><a href="/admin/quotes">Quotes</a></li>
+							<li><a href="/admin/auth/out">Logout</a></li>
 						</ul>
 					</div>
 					{{end}}

@@ -25,6 +25,7 @@ func Index(rw http.ResponseWriter, req *http.Request, r render.Render) {
 	bag["Host"] = req.URL.Host
 	bag["Admin"] = true
 	bag["Banners"] = bns
+	bag["ActiveNav"] = "banners"
 	r.HTML(200, "admin/banners/index", bag)
 
 	return
@@ -57,6 +58,7 @@ func Edit(rw http.ResponseWriter, req *http.Request, r render.Render, params mar
 	bag["Admin"] = true
 	bag["Banner"] = b
 	bag["URL"] = uploadURL
+	bag["ActiveNav"] = "banners"
 	r.HTML(200, "admin/banners/edit", bag)
 
 	return
