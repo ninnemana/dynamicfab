@@ -14,6 +14,7 @@ require.config({
 		'content':'./content',
 		'quote':'./quote',
 		'testimonial':'./testimonial',
+		'equipment':'./equipment',
 		'templates':'../views'
 	},
 
@@ -55,6 +56,9 @@ require([
 					break;
 				case 'testimonials':
 					require(['testimonial']);
+					break;
+				case 'equipment':
+					require(['equipment']);
 					break;
 				default:
 					break;

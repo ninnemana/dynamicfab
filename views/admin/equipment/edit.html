@@ -1,0 +1,57 @@
+{{$e := .Equipment}}
+
+<div class="container">
+	{{if IntegerGreater $e.ID 0}}
+	<h1><span>Edit Equipment</span></h1>
+	{{else}}
+	<h1><span>Add Equipment</span></h1>
+	{{end}}
+	<form action="/admin/equipment/{{$e.ID}}" class="form-horizontal" role="form" method="post">
+		<div class="form-group">
+			<label for="title" class="control-label col-lg-2">Title</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$e.Title}}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="desc" class="control-label col-lg-2">Description</label>
+			<div class="col-lg-6">
+				<textarea cols="30" rows="5" class="form-control" id="desc" placeholder="Enter description" name="desc">{{$e.Description}}</textarea>
+			</div>
+		</div>
+		<hr>
+
+		<div class="form-group">
+			<label for="" class="control-label col-lg-2">Components</label>
+			<div class="col-lg-6 well well-lg">
+
+				<div class="row">
+					<div class="col-lg-7">
+						<input type="text" class="form-control new-component" placeholder="Add component">
+					</div>
+					<div class="col-lg-2">
+						<button class="btn btn-primary add-component">Add</button>
+					</div>
+				</div>
+
+				<ul class="list-group component-list">
+					{{range $i, $c := $e.Components}}
+					<li class="list-group-item">
+						<input type="hidden" name="component[{{$i}}]" value="{{$c}}">
+						{{$c}}
+						<span class="glyphicon glyphicon-remove-circle pull-right remove-component"></span>
+					</li>
+					{{end}}
+				</ul>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-6 col-lg-offset-2">
+				<button class="btn btn-danger" type="submit">Save</button>
+			</div>
+
+		</div>
+	</form>
+</div>

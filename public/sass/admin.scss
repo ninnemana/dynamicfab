@@ -133,6 +133,13 @@ h1{
 	max-height:300px;
 }
 
+.component-list{
+	margin-top:15px;
+	.list-group-item span{
+		cursor: pointer;
+	}
+}
+
 
 .layout-footer{
 	padding: 20px 10px;

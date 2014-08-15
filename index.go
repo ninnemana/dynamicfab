@@ -4,11 +4,13 @@ import (
 	"controllers/admin"
 	bannerAdmin "controllers/admin/banners"
 	contentAdmin "controllers/admin/content"
+	equipmentAdmin "controllers/admin/equipment"
 	quoteAdmin "controllers/admin/quote"
 	testimonialAdmin "controllers/admin/testimonials"
 	"controllers/auth"
 	"controllers/banners"
 	"controllers/content"
+	"controllers/equipment"
 	"controllers/quote"
 	"controllers/testimonials"
 	"flag"
@@ -126,6 +128,12 @@ func init() {
 		r.Post("/:id", auth.Check, testimonialAdmin.Save)
 		r.Delete("/:id", auth.Check, testimonialAdmin.Delete)
 	})
+	m.Group("/admin/equipment", func(r martini.Router) {
+		r.Get("", auth.Check, equipmentAdmin.Index)
+		r.Get("/:id", auth.Check, equipmentAdmin.Edit)
+		r.Post("/:id", auth.Check, equipmentAdmin.Save)
+		r.Delete("/:id", auth.Check, equipmentAdmin.Delete)
+	})
 	m.Group("/admin/quotes", func(r martini.Router) {
 		r.Get("", auth.Check, quoteAdmin.Index)
 		r.Post("/heading", auth.Check, quoteAdmin.SetHeading)
@@ -145,6 +153,10 @@ func init() {
 	m.Group("/api/testimonials", func(r martini.Router) {
 		r.Get("", testimonial.All)
 		r.Get("/:id", testimonial.Get)
+	})
+	m.Group("/api/equipment", func(r martini.Router) {
+		r.Get("", equipment.All)
+		r.Get("/:id", equipment.Get)
 	})
 
 	m.Group("/api/quote", func(r martini.Router) {

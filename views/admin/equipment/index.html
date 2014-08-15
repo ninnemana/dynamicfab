@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9">
+			<h1><span>Equipment</span></h1>
+		</div>
+		<div class="col-lg-2 well">
+			<a href="/admin/equipment/0" class="btn-well btn btn-danger">Add Equipment</a>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<table class="table table-condensed table-bordered table-hover sortable">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Component Count</th>
+				<th>Created</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{range .Equipment}}
+			<tr>
+				<td>{{.Title}}</td>
+				<td>{{ShortenString .Description 100}}</td>
+				<td>{{len .Components}}</td>
+				<td>{{.Created}}</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/admin/equipment/{{.ID}}">Edit</a></li>
+							<li><a href="#" class="delete" data-id="{{.ID}}">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			{{end}}
+		</tbody>
+	</table>
+</div>
