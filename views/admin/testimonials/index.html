@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9">
+			<h1><span>Testimonials</span></h1>
+		</div>
+		<div class="col-lg-2 well">
+			<a href="/admin/testimonials/0" class="btn-well btn btn-danger">Add Testimonial</a>
+		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<table class="table table-condensed table-bordered table-hover sortable">
+		<thead>
+			<tr>
+				<th>Job Title</th>
+				<th>Job Description</th>
+				<th>Testimonial Author</th>
+				<th>Testimonial</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{range .Testimonials}}
+			<tr>
+				<td>{{.Job.Title}}</td>
+				<td>{{ShortenString .Job.Description 100}}</td>
+				<td>{{.Mention.Name}}</td>
+				<td>{{ShortenString .Mention.Copy 100}}</td>
+				<td>
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/admin/testimonials/{{.ID}}">Edit</a></li>
+							<li><a href="#" class="delete" data-id="{{.ID}}">Delete</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			{{end}}
+		</tbody>
+	</table>
+</div>

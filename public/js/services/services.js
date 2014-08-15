@@ -1,11 +1,13 @@
 define(['jquery',
 	'services/BannerService',
-	'services/ContentService'],function($, bs, cs){
+	'services/ContentService',
+	'services/TestimonialService'],function($, bs, cs, ts){
 	'use strict';
 
 	var services = {
 		BannerService: bs,
-		ContentService: cs
+		ContentService: cs,
+		TestimonialService: ts
 	};
 
 	var initialize = function(angModule){

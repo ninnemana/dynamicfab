@@ -5,10 +5,12 @@ import (
 	bannerAdmin "controllers/admin/banners"
 	contentAdmin "controllers/admin/content"
 	quoteAdmin "controllers/admin/quote"
+	testimonialAdmin "controllers/admin/testimonials"
 	"controllers/auth"
 	"controllers/banners"
 	"controllers/content"
 	"controllers/quote"
+	"controllers/testimonials"
 	"flag"
 	"fmt"
 	"github.com/go-martini/martini"
@@ -17,6 +19,7 @@ import (
 	"github.com/martini-contrib/sessions"
 	"html/template"
 	"net/http"
+	"reflect"
 	"strings"
 )
 
@@ -50,6 +53,45 @@ func init() {
 					}
 					return fmt.Sprintf("%s...", s[:l])
 				},
+				"IntegerGreater": func(x interface{}, y interface{}) bool {
+
+					if x == nil || y == nil {
+						return false
+					}
+
+					var xint int = 0
+					var yint int = 0
+
+					xtyp := reflect.TypeOf(x)
+					switch xtyp.Kind() {
+					case reflect.Int:
+						xint = int(x.(int))
+					case reflect.Int32:
+						xint = int(x.(int32))
+					case reflect.Int16:
+						xint = int(x.(int16))
+					case reflect.Int64:
+						xint = int(x.(int64))
+					}
+
+					ytyp := reflect.TypeOf(y)
+					switch ytyp.Kind() {
+					case reflect.Int:
+						yint = int(y.(int))
+					case reflect.Int32:
+						yint = int(y.(int32))
+					case reflect.Int16:
+						yint = int(y.(int16))
+					case reflect.Int64:
+						yint = int(y.(int64))
+					}
+
+					if xint <= yint {
+						return false
+					}
+
+					return true
+				},
 			},
 		},
 		Delims:          render.Delims{"{{", "}}"},
@@ -78,6 +120,12 @@ func init() {
 		r.Post("/:id", auth.Check, contentAdmin.Save)
 		r.Delete("/:id", auth.Check, contentAdmin.Delete)
 	})
+	m.Group("/admin/testimonials", func(r martini.Router) {
+		r.Get("", auth.Check, testimonialAdmin.Index)
+		r.Get("/:id", auth.Check, testimonialAdmin.Edit)
+		r.Post("/:id", auth.Check, testimonialAdmin.Save)
+		r.Delete("/:id", auth.Check, testimonialAdmin.Delete)
+	})
 	m.Group("/admin/quotes", func(r martini.Router) {
 		r.Get("", auth.Check, quoteAdmin.Index)
 		r.Post("/heading", auth.Check, quoteAdmin.SetHeading)
@@ -93,6 +141,10 @@ func init() {
 	m.Group("/api/content", func(r martini.Router) {
 		r.Get("", content.All)
 		r.Get("/:id", content.Get)
+	})
+	m.Group("/api/testimonials", func(r martini.Router) {
+		r.Get("", testimonial.All)
+		r.Get("/:id", testimonial.Get)
 	})
 
 	m.Group("/api/quote", func(r martini.Router) {

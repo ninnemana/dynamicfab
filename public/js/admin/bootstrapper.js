@@ -13,6 +13,7 @@ require.config({
 		'banner':'./banner',
 		'content':'./content',
 		'quote':'./quote',
+		'testimonial':'./testimonial',
 		'templates':'../views'
 	},
 
@@ -51,6 +52,9 @@ require([
 					break;
 				case 'quotes':
 					require(['quote']);
+					break;
+				case 'testimonials':
+					require(['testimonial']);
 					break;
 				default:
 					break;
