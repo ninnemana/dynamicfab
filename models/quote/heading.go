@@ -23,7 +23,7 @@ func GetHeading(ctx appengine.Context) (Heading, error) {
 	}
 
 	if len(hs) == 0 {
-		return h, errors.New("failed to retrieve heading")
+		return h, nil
 	}
 
 	return hs[0], err

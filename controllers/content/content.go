@@ -17,6 +17,10 @@ func All(rw http.ResponseWriter, req *http.Request, r render.Render) {
 		return
 	}
 
+	if con == nil {
+		con = make([]content.Content, 0)
+	}
+
 	r.JSON(200, con)
 }
 

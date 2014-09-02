@@ -17,6 +17,10 @@ func All(rw http.ResponseWriter, req *http.Request, r render.Render) {
 		return
 	}
 
+	if ts == nil {
+		ts = make([]testimonials.Testimonial, 0)
+	}
+
 	r.JSON(200, ts)
 }
 

@@ -16,6 +16,9 @@ func All(rw http.ResponseWriter, req *http.Request, r render.Render) {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	if eq == nil {
+		eq = make([]equipment.Equipment, 0)
+	}
 
 	r.JSON(200, eq)
 }
