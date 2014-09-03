@@ -1,0 +1,25 @@
+{{$au := .AboutUs}}
+
+<div class="container">
+	<h1><span>Edit About Us</span></h1>
+	<form action="/admin/about" class="form-horizontal" role="form" method="post">
+		<div class="form-group">
+			<label for="title" class="control-label col-lg-2">Title</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{$au.Title}}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="body" class="control-label col-lg-2">Body</label>
+			<div class="col-lg-6">
+				<textarea cols="30" rows="25" class="form-control" id="body" placeholder="Enter about us" name="body">{{$au.Body}}</textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-6 col-lg-offset-2">
+				<button class="btn btn-danger" type="submit">Save</button>
+			</div>
+		</div>
+	</form>
+</div>
