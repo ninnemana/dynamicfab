@@ -1,9 +1,16 @@
 define(['/js/vendor/angular-sanitize/angular-sanitize.min.js'],function(){
 	'use strict';
-	var ctlr = ['$scope','$sce', function($scope, $sce){
-		$scope.aboutHTML = "<h1>About Us</h1><img style='margin:10px auto 20px auto;display:block' src=\"http://dummyimage.com/960x400/4d494d/686a82.gif&text=About+Us\" alt=\"placeholder+image\"><p class='lead'>Jesus, man, can you change the station? The nail polish, Walter. I was, uh, one of the authors of the Port Huron Statement —The original Port Huron Statement. Not the compromised second draft. Yeah, well, right man, there are many facets to this, uh, you know, many interested parties. If I can find your money, man— what's in it for the Dude? When will you find these guys? I mean, do you have any promising leads?</p><p class='lead'>I—the royal we, man, you know, the editorial. Mind if I smoke a jay? Walter, you can't do that. These guys're like me, they're pacifists. Smokey was a conscientious objector. Yeah. Roadie for Metallica. Speed of Sound Tour. I know my rights. Nice marmot. I'm not Mr. Lebowski; you're Mr. Lebowski. I'm the Dude. Do you have any kalhua? Can we just rent it from you?</p><p class='lead'>No, the, uh, police chief of Malibu. A real reactionary. Another Caucasian, Gary. Whose toe was it, Walter? You know, little of this, little of that. Jeez. I miss vinyl. You got the wrong guy. I'm the Dude, man. I don't see any connection to Vietnam, Walter. I, uh… money, yeah, I gotta respectfully, 69 you know, tender my resignation on that matter, 'cause it looks like your mother really was kidnapped after all.</p><p class='lead'>1972 Pontiac LeBaron. I mean his wife goes out and owes money and they pee on my rug. It's a complicated case, Maude. Lotta ins. Lotta outs. And a lotta strands to keep in my head, man. Yeah well, that's just, ya know, like, your opinion, man. Walter, this isn't a First Amendment thing. They're nihilists. Ahh, you know. Strikes and gutters, ups and downs. LOGJAMMIN'.</p><p class='lead'>You know, the usual. Bowl. Drive around. The occasional acid flashback. No, look. I do mind. The Dude minds. This will not stand, you know, this aggression will not stand, man. I spent most of my time occupying various, um, administration buildings, smoking thai-stick, breaking into the ROTC and bowling. Your goons'll be able to get it off him, mean he's only fifteen and he's flunking social studies. So if you'll just write me a check for my ten per cent… of half a million… fifty grand.</p>";
+	var ctlr = ['$scope','$sce', '$http', function($scope, $sce, $http){
+		$scope.about = {};
+		$http({
+			method:'get',
+			url:'/api/aboutus'
+		}).success(function(data,status){
+			$scope.about = data;
+
+		});
 		$scope.trustAboutContent = function() {
-			return $sce.trustAsHtml($scope.aboutHTML);
+			return $sce.trustAsHtml($scope.about.body);
 		};
 	}];
 

@@ -1,7 +1,9 @@
 package dynamic
 
 import (
+	"controllers/aboutus"
 	"controllers/admin"
+	aboutAdmin "controllers/admin/aboutus"
 	bannerAdmin "controllers/admin/banners"
 	contentAdmin "controllers/admin/content"
 	equipmentAdmin "controllers/admin/equipment"
@@ -141,6 +143,11 @@ func init() {
 		r.Delete("/:id", auth.Check, quoteAdmin.Delete)
 	})
 
+	m.Group("/admin/about", func(r martini.Router) {
+		r.Get("", auth.Check, aboutAdmin.Edit)
+		r.Post("", auth.Check, aboutAdmin.Save)
+	})
+
 	m.Get("/blob/:id", banners.Serve)
 	m.Group("/api/banners", func(r martini.Router) {
 		r.Get("", banners.All)
@@ -163,6 +170,7 @@ func init() {
 		r.Post("", quote.Submit)
 		r.Get("/heading", quote.Heading)
 	})
+	m.Get("/api/aboutus", aboutus.Get)
 
 	m.Get("/adduser", auth.AddUser)
 
