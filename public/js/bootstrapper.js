@@ -31,7 +31,7 @@ require.config({
 		'angular-alert':['angular']
 	},
 	waitSeconds: 15,
-	urlArgs: 'bust=v0.1.3'
+	urlArgs: 'bust=v0.1.4'
 });
 
 require([
