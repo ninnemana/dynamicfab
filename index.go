@@ -172,7 +172,7 @@ func init() {
 	})
 	m.Get("/api/aboutus", aboutus.Get)
 
-	m.Get("/adduser", auth.AddUser)
+	// m.Get("/adduser", auth.AddUser)
 
 	// Serve Frontend
 	m.Get("/**", func(rw http.ResponseWriter, req *http.Request, r render.Render) {
