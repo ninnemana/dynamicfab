@@ -74,8 +74,8 @@ func Login(rw http.ResponseWriter, req *http.Request, sess sessions.Session) {
 func AddUser(rw http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
 	u := User{
-		Username: "",
-		Password: "",
+		Username: "admin",
+		Password: "admin",
 	}
 
 	if u.Username == "" {

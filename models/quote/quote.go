@@ -8,12 +8,26 @@ import (
 )
 
 type Quote struct {
-	ID          int64     `json:"id"`
-	Name        string    `json:"name"`
-	Email       string    `json:"email"`
-	Phone       string    `json:"phone"`
-	Description string    `json:"desc"`
-	Created     time.Time `json:"-"`
+	ID            int64  `json:"id"`
+	Name          string `json:"name"`
+	Company       string `json:"company"`
+	Address       string `json:"address"`
+	City          string `json:"city"`
+	State         string `json:"state"`
+	Zip           string `json:"zip"`
+	Email         string `json:"email"`
+	Website       string `json:"website"`
+	RequestDate   string `json:"request_date"`
+	DeliveryDate  string `json:"delivery_date"`
+	Part          string `json:"part"`
+	Quantity      int    `json:"quantity"`
+	Cost          string `json:"cost"`
+	PackagingInfo string `json:"pkg"`
+	Fax           string `json:"fax"`
+	Phone         string `json:"phone"`
+	Description   string `json:"desc"`
+
+	Created time.Time `json:"-"`
 }
 
 func All(ctx appengine.Context) ([]Quote, error) {

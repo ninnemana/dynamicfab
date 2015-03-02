@@ -4,6 +4,14 @@ runtime: go
 api_version: go1
 
 handlers:
+- url: /js
+  static_dir: public/js
+- url: /dist
+  static_dir: public/dist
+- url: /imgs
+  static_dir: public/imgs
+- url: /sass
+  static_dir: public/sass
 - url: /.*
   script: _go_app
 
